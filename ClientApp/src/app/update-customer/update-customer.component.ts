@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Validator } from '@angular/forms';
 import { CustomerService } from '../api/services';
 import { CustomerRm } from '../api/models';
 import { CustomerDto } from '../api/models';
@@ -15,10 +14,9 @@ import Swal from 'sweetalert2';
 export class UpdateCustomerComponent implements OnInit {
 
   constructor(
-    private customerService: CustomerService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ){}
+    private _customerService: CustomerService,
+    private _activatedRoute: ActivatedRoute,
+    private _router: Router){}
 
   customerRm: CustomerRm = {};
 
@@ -40,14 +38,14 @@ export class UpdateCustomerComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
+    this._activatedRoute.params.subscribe(params => {
       const customerId = params['id'];
       this.getCustomerById(customerId);
     });
   }
 
   getCustomerById(customerId: string) {
-    this.customerService.getCustomer({ id: customerId })
+    this._customerService.getCustomer({ id: customerId })
       .subscribe({
         next: (customer) => this.customerRm = customer,
         error: this.customerNotFound
@@ -65,11 +63,11 @@ export class UpdateCustomerComponent implements OnInit {
       email: this.formGroup.controls.email.value
     };
 
-    this.customerService.updateCustomer({ body: customerDto })
+    this._customerService.updateCustomer({ body: customerDto })
       .subscribe({
         next: _ => { 
           // Navigate to the home page
-          this.router.navigate(['/']);
+          this._router.navigate(['/']);
         },
         error: this.handleError
       });
@@ -82,13 +80,13 @@ export class UpdateCustomerComponent implements OnInit {
       text: 'The customer you are looking for does not exist',
       confirmButtonText: 'Ok'
     })
-    .then(() => this.router.navigate(['/']));
+    .then(() => this._router.navigate(['/']));
   }
 
   private handleError = (error: any) => {
     Swal.fire({
       icon: 'error',
-      title: 'Oops...',
+      title: 'There was an error',
       text: `Something went wrong! Status code: ${error.status}`,
       confirmButtonText: 'Ok'
     });
@@ -109,5 +107,4 @@ export class UpdateCustomerComponent implements OnInit {
     return this.formGroup.controls.email.invalid 
       && (this.formGroup.controls.email.dirty || this.formGroup.controls.email.touched);
   }
-
 }

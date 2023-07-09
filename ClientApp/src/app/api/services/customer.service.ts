@@ -289,4 +289,51 @@ export class CustomerService extends BaseService {
     );
   }
 
+  /** Path part for operation `deleteCustomer()` */
+  static readonly DeleteCustomerPath = '/Customer/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `deleteCustomer()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  deleteCustomer$Response(
+    params: {
+      id: string;
+    },
+    context?: HttpContext
+  ): Observable<StrictHttpResponse<void>> {
+    const rb = new RequestBuilder(this.rootUrl, CustomerService.DeleteCustomerPath, 'delete');
+    if (params) {
+      rb.path('id', params.id, {});
+    }
+
+    return this.http.request(
+      rb.build({ responseType: 'text', accept: '*/*', context })
+    ).pipe(
+      filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `deleteCustomer$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  deleteCustomer(
+    params: {
+      id: string;
+    },
+    context?: HttpContext
+  ): Observable<void> {
+    return this.deleteCustomer$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
 }

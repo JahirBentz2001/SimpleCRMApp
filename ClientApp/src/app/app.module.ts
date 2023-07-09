@@ -10,13 +10,15 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { UpdateCustomerComponent } from './update-customer/update-customer.component';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    UpdateCustomerComponent,],
+    UpdateCustomerComponent,
+    AddCustomerComponent,],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
@@ -25,7 +27,8 @@ import { UpdateCustomerComponent } from './update-customer/update-customer.compo
     SweetAlert2Module.forRoot(),
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'update-customer/:id', component: UpdateCustomerComponent }
+      { path: 'update-customer/:id', component: UpdateCustomerComponent },
+      { path: 'add-customer', component: AddCustomerComponent }
     ])
   ],
   providers: [],

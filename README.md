@@ -5,6 +5,7 @@ This project is the implementation of a fullstack web application where the user
 The main context of this project is to learn building a web based CRUD application using the following technologies:
 
 - Angular for Frontend
+    - SweetAlert2 for confirmation and/or information popups
 - .NET Core for Backend
 - SQL Server for Database Engine
 

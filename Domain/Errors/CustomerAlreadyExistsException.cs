@@ -8,7 +8,7 @@ namespace CRMApp.Domain.Errors
     public class CustomerAlreadyExistsException : Exception
     {
         public CustomerAlreadyExistsException() 
-            : base("The customer already exists.")
+            : base("The customer already exists")
         { }
     }
 }

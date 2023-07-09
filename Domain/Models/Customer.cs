@@ -12,16 +12,16 @@ namespace CRMApp.Domain.Models
         public Guid Id { get; set; }
 
         [Required]
-        [MinLength(2), MaxLength(50)]
+        [StringLength(50, MinimumLength = 2)]
         public string FirstName { get; set; }
 
         [Required]
-        [MinLength(2), MaxLength(75)]
+        [StringLength(75, MinimumLength = 2)]
         public string LastName { get; set; }
 
         [Required]
         [EmailAddress]
-        [MinLength(5), MaxLength(100)]
+        [StringLength(100, MinimumLength = 5)]
         public string Email { get; set; }
 
         # pragma warning disable 8618
@@ -37,6 +37,23 @@ namespace CRMApp.Domain.Models
             this.FirstName = FirstName;
             this.LastName = LastName;
             this.Email = Email;
+        }
+
+        internal IList<ValidationResult>? ValidationResults()
+        {
+            // This validates the Customer object using DataAnnotations
+            var customer = this;
+
+            var validationContext = new ValidationContext(customer);
+
+            var validationResults = new List<ValidationResult>();
+
+            bool isValid = Validator.TryValidateObject(customer, validationContext, validationResults, true);
+
+            if(!isValid)
+                return validationResults;
+
+            return null;
         }
     }
 }
