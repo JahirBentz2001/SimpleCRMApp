@@ -1,3 +1,44 @@
+
+<div class="columns is-centered is-vcentered">
+  <div class="column is-half"> 
+    <ng-container *ngIf="customers.length > 0; else emptyList">
+      <h1 class="title">Customers List</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of customers">
+            <td>{{ customer.firstName }}</td>
+            <td>{{ customer.lastName }}</td>
+            <td>{{ customer.email }}</td>
+            <td>
+              <a class="button is-small is-info mr-2" [routerLink]="['/update-customer', customer.id]">
+                <!--<i class="fas fas-pencil"></i>-->
+                Edit
+              </a>
+              <button class="button is-small is-danger">Delete</button>
+              <!--
+              <a class="button is-small is-info" [routerLink]="['/customers', customer.id]">Edit</a>
+              <button class="button is-small is-danger" (click)="deleteCustomer(customer.id)">Delete</button>
+              -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #emptyList>
+  <p class="has-text-danger">There are no customers</p>
+</ng-template>
+<!--
 <h1>Hello, world!</h1>
 <p>Welcome to your new single-page application, built with:</p>
 <ul>
@@ -12,3 +53,4 @@
   <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration automatically invokes <code>ng build</code> to produce minified, ahead-of-time compiled JavaScript files.</li>
 </ul>
 <p>The <code>ClientApp</code> subdirectory is a standard Angular CLI application. If you open a command prompt in that directory, you can run any <code>ng</code> command (e.g., <code>ng test</code>), or use <code>npm</code> to install extra packages into it.</p>
+-->

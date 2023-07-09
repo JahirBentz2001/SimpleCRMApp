@@ -1,0 +1,72 @@
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Update customer
+      </h1>
+      <form [formGroup]="formGroup" (ngSubmit)="updateCustomer()">
+        <input type="hidden" formControlName="id" [value]="customerRm.id" />
+        <div class="field" style="width: 20rem;">
+            <label class="label">First Name</label>
+            <div class="control has-icons-right">
+                <input 
+                    formControlName="firstName" 
+                    [ngClass]="{ 
+                        'input': true,
+                        'is-danger': invalidFirstName
+                    }"
+                    type="text" 
+                    placeholder="First Name" 
+                    [value]="customerRm.firstName" />
+                    <span class="icon is-small is-right" *ngIf="invalidFirstName">
+                        <i class="fa fa-exclamation-triangle"></i>
+                    </span>
+            </div>
+            <span class="has-text-danger" *ngIf="invalidFirstName">Invalid First Name</span>
+        </div>
+        <div class="field" style="width: 20rem;">
+            <label class="label">Last Name</label>
+            <div class="control">
+                <input 
+                    formControlName="lastName" 
+                    [ngClass]="{ 
+                        'input': true,
+                        'is-danger': invalidLastName
+                    }"
+                    type="text" 
+                    placeholder="Last Name" 
+                    [value]="customerRm.lastName" />
+            </div>
+            <span class="has-text-danger" *ngIf="invalidLastName">Invalid Last Name</span>
+        </div>
+        <div class="field" style="width: 20rem;">
+            <label class="label">Email</label>
+            <div class="control">
+                <input 
+                    formControlName="email" 
+                    [ngClass]="{ 
+                        'input': true,
+                        'is-danger': invalidEmail
+                    }"
+                    type="email" 
+                    placeholder="example@mail.com" 
+                    [value]="customerRm.email" />
+            </div>
+            <span class="has-text-danger" *ngIf="invalidEmail">Invalid Email</span>  
+        </div>
+        <div class="field">
+            <div class="control">
+                <button 
+                    type="submit" 
+                    class="button is-info"
+                    [disabled]="formGroup.invalid">Save changes</button>
+            </div>
+            <div class="control mt-2">
+                <a [routerLink]="['/']">Back</a>
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

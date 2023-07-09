@@ -20,12 +20,16 @@
     "@angular/platform-browser-dynamic": "^15.2.6",
     "@angular/platform-server": "^15.2.6",
     "@angular/router": "^15.2.6",
-    "bootstrap": "^5.2.3",
+    "@fortawesome/fontawesome-free": "^6.4.0",
+    "@sweetalert2/ngx-sweetalert2": "^12.1.0",
+    "bulma": "^0.9.4",
     "jquery": "^3.6.3",
+    "ng-openapi-gen": "^0.25.1",
     "oidc-client": "^1.11.5",
     "popper.js": "^1.16.0",
     "run-script-os": "^1.1.6",
     "rxjs": "~7.8.0",
+    "sweetalert2": "^11.7.12",
     "tslib": "^2.5.0",
     "zone.js": "~0.12.0"
   },
@@ -46,6 +50,5 @@
   },
   "overrides": {
     "autoprefixer": "10.4.5"
-  },
-  "optionalDependencies": {}
+  }
 }
