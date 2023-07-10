@@ -7,5 +7,6 @@ The main context of this project is to learn building a web based CRUD applicati
 - Angular for Frontend
     - SweetAlert2 for confirmation and/or information popups
 - .NET Core for Backend
+    - OpenAPI Middleware
 - SQL Server for Database Engine
 
