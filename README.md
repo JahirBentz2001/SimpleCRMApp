@@ -10,3 +10,13 @@ The main context of this project is to learn building a web based CRUD applicati
     - OpenAPI Middleware
 - SQL Server for Database Engine
 
+# Screenshots
+
+![Alt text](image.png)
+
+![Alt text](image-1.png)
+
+![Alt text](image-2.png)
+
+![Alt text](image-3.png)
+
